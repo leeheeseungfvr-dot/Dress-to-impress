@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELOURS NAILS — Luxury Press On Nails</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f8f3ee;
+    --ivory: #faf7f4;
+    --gold: #c9a96e;
+    --gold-light: #e8d5b0;
+    --gold-dark: #9a7a45;
+    --noir: #1a1410;
+    --muted: #7a6e65;
+    --blush: #e8d5cb;
+    --rose: #c4897a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ivory);
+    color: var(--noir);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s, height 0.2s;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    opacity: 0.6;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,247,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,169,110,0.2);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--noir);
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-icons { display: flex; gap: 20px; align-items: center; }
+  .nav-icon {
+    background: none; border: none;
+    font-size: 16px; cursor: none;
+    color: var(--noir);
+    position: relative;
+    transition: color 0.3s;
+  }
+  .nav-icon:hover { color: var(--gold); }
+  .cart-badge {
+    position: absolute; top: -6px; right: -6px;
+    background: var(--gold);
+    color: white;
+    font-size: 9px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Jost', sans-serif;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0e6d9 0%, #e8d5cb 50%, #dfc5b8 100%);
+    z-index: 0;
+  }
+  .hero-left {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 80px;
+  }
+  .hero-tag {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--noir);
+    margin-bottom: 28px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-desc {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--muted);
+    max-width: 360px;
+    margin-bottom: 52px;
+    letter-spacing: 0.03em;
+  }
+  .hero-ctas { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--noir);
+    color: var(--cream);
+    padding: 16px 38px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: none; cursor: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--noir);
+    padding: 16px 38px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid var(--noir); cursor: none;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px 60px 60px 40px;
+  }
+  .hero-visual {
+    position: relative;
+    width: 380px; height: 480px;
+  }
+  .nail-showcase {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #fff0ea, #f5ddd3);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 30px 30px 80px rgba(26,20,16,0.12);
+  }
+  .nail-showcase::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a96e' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .nail-hand {
+    font-size: 140px;
+    filter: drop-shadow(0 20px 40px rgba(196,137,122,0.3));
+    animation: float 4s ease-in-out infinite;
+    z-index: 1;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .badge-new {
+    position: absolute;
+    top: 24px; right: -12px;
+    background: var(--gold);
+    color: white;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+  .hero-stats {
+    position: absolute;
+    bottom: -20px; left: -30px;
+    background: white;
+    padding: 20px 28px;
+    box-shadow: 0 20px 60px rgba(26,20,16,0.1);
+    display: flex; gap: 28px;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* MARQUEE */
+  .marquee-section {
+    background: var(--noir);
+    padding: 18px 0;
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    display: flex; align-items: center; gap: 20px;
+  }
+  .marquee-item::after { content: '✦'; color: var(--gold); font-size: 8px; }
+
+  /* SECTION TITLES */
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* COLLECTIONS */
+  .collections {
+    padding: 120px 80px;
+    background: var(--ivory);
+  }
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .collection-card {
+    position: relative;
+    cursor: none;
+    overflow: hidden;
+    group: true;
+  }
+  .collection-img {
+    aspect-ratio: 3/4;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    transition: transform 0.5s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .collection-card:hover .collection-img { transform: scale(1.03); }
+  .c1 { background: linear-gradient(145deg, #f5e6f0, #e8d0e5); }
+  .c2 { background: linear-gradient(145deg, #1a1410, #2d2218); color: var(--gold); }
+  .c3 { background: linear-gradient(145deg, #e8f0f5, #d0e0e8); }
+  .c4 { background: linear-gradient(145deg, #f5f0e6, #e5ddd0); }
+  .collection-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,20,16,0);
+    transition: background 0.4s;
+    display: flex; align-items: flex-end;
+    padding: 24px;
+  }
+  .collection-card:hover .collection-overlay { background: rgba(26,20,16,0.3); }
+  .collection-info { padding: 20px 0 4px; }
+  .collection-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 4px;
+  }
+  .collection-count {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .collection-arrow {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 36px; height: 36px;
+    background: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s;
+  }
+  .collection-card:hover .collection-arrow { opacity: 1; transform: translateY(0); }
+
+  /* FEATURED PRODUCTS */
+  .products {
+    padding: 120px 80px;
+    background: var(--cream);
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .product-card {
+    background: white;
+    cursor: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 30px 80px rgba(26,20,16,0.1); }
+  .product-img {
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 90px;
+    position: relative;
+    overflow: hidden;
+  }
+  .p1 { background: linear-gradient(135deg, #fce8f0, #f5d5e5); }
+  .p2 { background: linear-gradient(135deg, #1a1410, #2d2218); }
+  .p3 { background: linear-gradient(135deg, #f0ece8, #e5ddd5); }
+  .product-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: var(--gold);
+    color: white;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+  }
+  .product-actions {
+    position: absolute;
+    top: 16px; right: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+    opacity: 0; transform: translateX(8px);
+    transition: all 0.3s;
+  }
+  .product-card:hover .product-actions { opacity: 1; transform: translateX(0); }
+  .action-btn {
+    width: 36px; height: 36px;
+    background: white;
+    border: none; cursor: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+  }
+  .action-btn:hover { background: var(--gold); color: white; }
+  .product-info { padding: 20px 24px 24px; }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .product-sub {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; }
+  .product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+  }
+  .product-old {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-left: 8px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .add-cart {
+    background: var(--noir);
+    color: white;
+    border: none; cursor: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 11px 18px;
+    transition: background 0.3s;
+  }
+  .add-cart:hover { background: var(--gold); }
+  .nail-sizes {
+    display: flex; gap: 6px;
+    margin-bottom: 16px;
+  }
+  .size-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold-light);
+    font-size: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    cursor: none;
+    transition: all 0.2s;
+  }
+  .size-dot:hover, .size-dot.active {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: white;
+  }
+
+  /* RITUAL SECTION */
+  .ritual {
+    padding: 140px 80px;
+    background: var(--noir);
+    color: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .ritual-tag { color: var(--gold-light); }
+  .ritual .section-header { text-align: left; margin-bottom: 0; }
+  .ritual .section-title { color: var(--cream); }
+  .ritual-steps { margin-top: 48px; display: flex; flex-direction: column; gap: 32px; }
+  .ritual-step { display: flex; gap: 24px; align-items: flex-start; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    opacity: 0.4;
+  }
+  .step-content {}
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: var(--cream);
+  }
+  .step-desc { font-size: 13px; line-height: 1.8; color: rgba(248,243,238,0.55); }
+  .ritual-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .ritual-img {
+    aspect-ratio: 1;
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 60px;
+  }
+  .ri1 { background: #2d2218; grid-column: span 2; aspect-ratio: 2/1; font-size: 80px; }
+  .ri2 { background: #3d3025; }
+  .ri3 { background: linear-gradient(135deg, #c9a96e22, #9a7a4522); border: 1px solid #c9a96e33; }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 120px 80px;
+    background: var(--ivory);
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+  }
+  .testimonial-card {
+    padding: 40px;
+    background: white;
+    border-left: 2px solid var(--gold-light);
+    transition: border-color 0.3s;
+  }
+  .testimonial-card:hover { border-color: var(--gold); }
+  .stars { color: var(--gold); font-size: 14px; margin-bottom: 20px; letter-spacing: 4px; }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    font-style: italic;
+    color: var(--noir);
+    margin-bottom: 24px;
+  }
+  .testimonial-author {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* NEWSLETTER */
+  .newsletter {
+    padding: 100px 80px;
+    background: linear-gradient(135deg, #f0e6d9 0%, #e8d5cb 100%);
+    text-align: center;
+  }
+  .newsletter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .newsletter-sub {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+  }
+  .newsletter-form {
+    display: flex;
+    max-width: 460px;
+    margin: 0 auto;
+    gap: 0;
+  }
+  .newsletter-input {
+    flex: 1;
+    padding: 16px 24px;
+    border: 1px solid rgba(201,169,110,0.4);
+    background: rgba(255,255,255,0.7);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    color: var(--noir);
+    outline: none;
+  }
+  .newsletter-input::placeholder { color: var(--muted); }
+  .newsletter-btn {
+    background: var(--noir);
+    color: white;
+    border: none; cursor: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    transition: background 0.3s;
+  }
+  .newsletter-btn:hover { background: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--noir);
+    color: var(--cream);
+    padding: 80px 80px 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+  }
+  .footer-brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+  .footer-brand-name span { color: var(--gold); }
+  .footer-desc {
+    font-size: 12px;
+    line-height: 1.9;
+    color: rgba(248,243,238,0.45);
+    max-width: 240px;
+    margin-bottom: 28px;
+  }
+  .footer-socials { display: flex; gap: 12px; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,169,110,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    color: var(--gold-light);
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .social-link:hover { background: var(--gold); border-color: var(--gold); color: white; }
+  .footer-col-title {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a {
+    text-decoration: none;
+    color: rgba(248,243,238,0.45);
+    font-size: 13px;
+    transition: color 0.3s;
+    cursor: none;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(248,243,238,0.3);
+    letter-spacing: 0.1em;
+  }
+  .footer-payments { display: flex; gap: 10px; align-items: center; }
+  .pay-badge {
+    background: rgba(255,255,255,0.08);
+    padding: 6px 12px;
+    font-size: 10px;
+    color: rgba(248,243,238,0.5);
+    letter-spacing: 0.08em;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* CART DRAWER */
+  .cart-drawer {
+    position: fixed;
+    top: 0; right: -420px;
+    width: 420px; height: 100vh;
+    background: white;
+    z-index: 200;
+    transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: -20px 0 60px rgba(0,0,0,0.15);
+    display: flex; flex-direction: column;
+  }
+  .cart-drawer.open { right: 0; }
+  .cart-header {
+    padding: 28px 32px;
+    border-bottom: 1px solid rgba(201,169,110,0.2);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cart-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+  }
+  .cart-close { background: none; border: none; font-size: 20px; cursor: none; color: var(--muted); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 24px 32px; }
+  .cart-item { display: flex; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--cream); }
+  .cart-item-img {
+    width: 72px; height: 72px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+  .ci1 { background: linear-gradient(135deg, #fce8f0, #f5d5e5); }
+  .ci2 { background: linear-gradient(135deg, #1a1410, #2d2218); }
+  .cart-item-info { flex: 1; }
+  .cart-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+  .cart-item-price { font-size: 13px; color: var(--gold); margin-bottom: 12px; }
+  .qty-control { display: flex; align-items: center; gap: 12px; }
+  .qty-btn { background: none; border: 1px solid var(--gold-light); width: 26px; height: 26px; cursor: none; font-size: 14px; color: var(--muted); transition: all 0.2s; }
+  .qty-btn:hover { background: var(--gold); border-color: var(--gold); color: white; }
+  .qty-num { font-size: 13px; min-width: 20px; text-align: center; }
+  .cart-footer { padding: 24px 32px; border-top: 1px solid rgba(201,169,110,0.2); }
+  .cart-subtotal { display: flex; justify-content: space-between; margin-bottom: 20px; }
+  .cart-subtotal-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+  .cart-subtotal-amount { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--gold); }
+  .checkout-btn {
+    width: 100%;
+    background: var(--noir);
+    color: white;
+    border: none; cursor: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 18px;
+    transition: background 0.3s;
+  }
+  .checkout-btn:hover { background: var(--gold); }
+  .cart-note { font-size: 10px; color: var(--muted); text-align: center; margin-top: 12px; letter-spacing: 0.05em; }
+  .overlay {
+    position: fixed; inset: 0;
+    background: rgba(26,20,16,0.4);
+    z-index: 199;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .overlay.show { opacity: 1; pointer-events: all; }
+
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero::before { display: none; }
+    .hero-left { padding: 40px 24px; }
+    .hero-right { display: none; }
+    .collections, .products, .ritual, .testimonials, .newsletter { padding: 80px 24px; }
+    .collections-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: 1fr; }
+    .ritual { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    footer { padding: 60px 24px 30px; }
+    .cart-drawer { width: 100%; right: -100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Velours <span>✦</span> Nails</div>
+  <ul class="nav-links">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#ritual">The Ritual</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon">🔍</button>
+    <button class="nav-icon">♡</button>
+    <button class="nav-icon" onclick="openCart()" style="position:relative;">
+      🛍
+      <span class="cart-badge" id="cartCount">2</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Spring Collection 2026</div>
+    <h1 class="hero-title">The art<br>of <em>glamour</em><br>at your<br>fingertips</h1>
+    <p class="hero-desc">Press-on nails designed for the woman who refuses to choose between beauty and practicality. Applied in 5 minutes, worn with elegance.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Discover the Collection</button>
+      <button class="btn-outline" onclick="document.getElementById('ritual').scrollIntoView({behavior:'smooth'})">Our Ritual</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="nail-showcase">
+        <div class="nail-hand">💅</div>
+        <div class="badge-new">New</div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Designs</span></div>
+        <div class="stat"><span class="stat-num">4.9★</span><span class="stat-label">Rating</span></div>
+        <div class="stat"><span class="stat-num">24h</span><span class="stat-label">Shipping</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Free shipping over $45</span>
+    <span class="marquee-item">Applied in 5 minutes</span>
+    <span class="marquee-item">Lasts up to 3 weeks</span>
+    <span class="marquee-item">24 sizes included</span>
+    <span class="marquee-item">Free returns</span>
+    <span class="marquee-item">Long-lasting formula</span>
+    <span class="marquee-item">Free shipping over $45</span>
+    <span class="marquee-item">Applied in 5 minutes</span>
+    <span class="marquee-item">Lasts up to 3 weeks</span>
+    <span class="marquee-item">24 sizes included</span>
+    <span class="marquee-item">Free returns</span>
+    <span class="marquee-item">Long-lasting formula</span>
+  </div>
+</div>
+
+<!-- COLLECTIONS -->
+<section class="collections" id="collections">
+  <div class="section-header fade-up">
+    <span class="section-tag">Our Universes</span>
+    <h2 class="section-title">Explore our<br><em>collections</em></h2>
+  </div>
+  <div class="collections-grid">
+    <div class="collection-card fade-up">
+      <div class="collection-img c1">🌸</div>
+      <div class="collection-arrow">→</div>
+      <div class="collection-info">
+        <div class="collection-name">Blossom</div>
+        <div class="collection-count">12 designs</div>
+      </div>
+    </div>
+    <div class="collection-card fade-up" style="transition-delay:0.1s">
+      <div class="collection-img c2">🖤</div>
+      <div class="collection-arrow">→</div>
+      <div class="collection-info">
+        <div class="collection-name">Midnight Black</div>
+        <div class="collection-count">8 designs</div>
+      </div>
+    </div>
+    <div class="collection-card fade-up" style="transition-delay:0.2s">
+      <div class="collection-img c3">💎</div>
+      <div class="collection-arrow">→</div>
+      <div class="collection-info">
+        <div class="collection-name">Crystal Ice</div>
+        <div class="collection-count">10 designs</div>
+      </div>
+    </div>
+    <div class="collection-card fade-up" style="transition-delay:0.3s">
+      <div class="collection-img c4">✨</div>
+      <div class="collection-arrow">→</div>
+      <div class="collection-info">
+        <div class="collection-name">Nude Luxe</div>
+        <div class="collection-count">14 designs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-header fade-up">
+    <span class="section-tag">Bestsellers</span>
+    <h2 class="section-title">Most<br><em>desired</em></h2>
+  </div>
+  <div class="products-grid">
+    <!-- Card 1 -->
+    <div class="product-card fade-up">
+      <div class="product-img p1">
+        🌸
+        <div class="product-badge">Bestseller</div>
+        <div class="product-actions">
+          <button class="action-btn" title="Wishlist">♡</button>
+          <button class="action-btn" title="Preview">👁</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Blossom Dream</div>
+        <div class="product-sub">Spring Collection</div>
+        <div class="nail-sizes">
+          <div class="size-dot active">XS</div>
+          <div class="size-dot">S</div>
+          <div class="size-dot">M</div>
+          <div class="size-dot">L</div>
+          <div class="size-dot">XL</div>
+        </div>
+        <div class="product-footer">
+          <div>
+            <span class="product-price">$24.90</span>
+            <span class="product-old">$32</span>
+          </div>
+          <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="product-card fade-up" style="transition-delay:0.15s">
+      <div class="product-img p2">
+        🖤
+        <div class="product-badge" style="background:#c9a96e">New</div>
+        <div class="product-actions">
+          <button class="action-btn" title="Wishlist">♡</button>
+          <button class="action-btn" title="Preview">👁</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Midnight Velvet</div>
+        <div class="product-sub">Midnight Black Collection</div>
+        <div class="nail-sizes">
+          <div class="size-dot active">XS</div>
+          <div class="size-dot">S</div>
+          <div class="size-dot">M</div>
+          <div class="size-dot">L</div>
+          <div class="size-dot">XL</div>
+        </div>
+        <div class="product-footer">
+          <div><span class="product-price">$27.90</span></div>
+          <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="product-card fade-up" style="transition-delay:0.3s">
+      <div class="product-img p3">
+        💎
+        <div class="product-actions">
+          <button class="action-btn" title="Wishlist">♡</button>
+          <button class="action-btn" title="Preview">👁</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Iced Diamond</div>
+        <div class="product-sub">Crystal Ice Collection</div>
+        <div class="nail-sizes">
+          <div class="size-dot active">XS</div>
+          <div class="size-dot">S</div>
+          <div class="size-dot">M</div>
+          <div class="size-dot">L</div>
+          <div class="size-dot">XL</div>
+        </div>
+        <div class="product-footer">
+          <div><span class="product-price">$29.90</span></div>
+          <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RITUAL -->
+<section class="ritual" id="ritual">
+  <div>
+    <div class="section-header fade-up" style="text-align:left;margin-bottom:0">
+      <span class="section-tag ritual-tag">How It Works</span>
+      <h2 class="section-title">The Velours<br><em>Ritual</em></h2>
+    </div>
+    <div class="ritual-steps">
+      <div class="ritual-step fade-up">
+        <span class="step-num">01</span>
+        <div class="step-content">
+          <div class="step-title">Prep Your Nails</div>
+          <div class="step-desc">Clean, lightly file, and degrease your nails for optimal adhesion and maximum wear time.</div>
+        </div>
+      </div>
+      <div class="ritual-step fade-up">
+        <span class="step-num">02</span>
+        <div class="step-content">
+          <div class="step-title">Find Your Size</div>
+          <div class="step-desc">24 sizes included in every kit. Find your perfect match for a natural, comfortable result.</div>
+        </div>
+      </div>
+      <div class="ritual-step fade-up">
+        <span class="step-num">03</span>
+        <div class="step-content">
+          <div class="step-title">Apply & Shine</div>
+          <div class="step-desc">Apply the glue, press for 30 seconds. In 5 minutes, your hands are transformed. Lasts up to 3 weeks.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ritual-visual fade-up">
+    <div class="ritual-img ri1">💅</div>
+    <div class="ritual-img ri2">✨</div>
+    <div class="ritual-img ri3">🌟</div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-header fade-up">
+    <span class="section-tag">They Love It</span>
+    <h2 class="section-title">What they<br><em>say</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"I'll never go to a nail salon again. My nails stay perfect for 2 weeks and application is so easy."</p>
+      <div class="testimonial-author">— Léa M., New York</div>
+    </div>
+    <div class="testimonial-card fade-up" style="transition-delay:0.1s">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"The quality is unreal. Everyone asks if I just left a professional manicurist. Velours Nails is my beauty secret."</p>
+      <div class="testimonial-author">— Amara K., Los Angeles</div>
+    </div>
+    <div class="testimonial-card fade-up" style="transition-delay:0.2s">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Finally press-ons that don't look fake. The Midnight Velvet design is absolutely stunning. I reorder every 3 weeks."</p>
+      <div class="testimonial-author">— Sofia R., Miami</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="section-header fade-up" style="margin-bottom:0">
+    <span class="section-tag">Join the Community</span>
+    <h2 class="newsletter-title"><em>Exclusive</em> Access</h2>
+    <p class="newsletter-sub">New arrivals first, private offers, and beauty tips delivered straight to your inbox.</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="your@email.com">
+      <button class="newsletter-btn">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Velours <span>✦</span> Nails</div>
+      <p class="footer-desc">Exceptional press-on nails for the modern woman. Beauty, practicality, and elegance, in harmony.</p>
+      <div class="footer-socials">
+        <a class="social-link" href="#">📸</a>
+        <a class="social-link" href="#">🎵</a>
+        <a class="social-link" href="#">📌</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Shop</div>
+      <ul class="footer-links">
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Bestsellers</a></li>
+        <li><a href="#">Full Kits</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Help</div>
+      <ul class="footer-links">
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Application Tips</a></li>
+        <li><a href="#">Shipping & Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Our Values</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Affiliates</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Velours Nails. All rights reserved.</div>
+    <div class="footer-payments">
+      <span class="pay-badge">Visa</span>
+      <span class="pay-badge">Mastercard</span>
+      <span class="pay-badge">PayPal</span>
+      <span class="pay-badge">Apple Pay</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <div class="cart-title">My Cart</div>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items">
+    <div class="cart-item">
+      <div class="cart-item-img ci1">🌸</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">Blossom Dream</div>
+        <div class="cart-item-price">$24.90</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="updateQty(this,-1)">−</button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn" onclick="updateQty(this,1)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-item-img ci2">🖤</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">Midnight Velvet</div>
+        <div class="cart-item-price">$27.90</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="updateQty(this,-1)">−</button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn" onclick="updateQty(this,1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span class="cart-subtotal-label">Subtotal</span>
+      <span class="cart-subtotal-amount" id="subtotal">$52.80</span>
+    </div>
+    <button class="checkout-btn">Proceed to Checkout →</button>
+    <p class="cart-note">🔒 100% Secure Payment · Free Shipping</p>
+  </div>
+</div>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => {
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    }, 80);
+  });
+  document.querySelectorAll('button, a, .collection-card, .product-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '16px'; cursor.style.height = '16px';
+      ring.style.width = '50px'; ring.style.height = '50px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px'; cursor.style.height = '10px';
+      ring.style.width = '36px'; ring.style.height = '36px';
+    });
+  });
+
+  // Fade-up animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Cart
+  let cartCount = 2;
+  function openCart() {
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+  }
+  function closeCart() {
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+  function addToCart() {
+    cartCount++;
+    document.getElementById('cartCount').textContent = cartCount;
+    openCart();
+  }
+  function updateQty(btn, delta) {
+    const qtyEl = btn.parentElement.querySelector('.qty-num');
+    let q = parseInt(qtyEl.textContent) + delta;
+    if (q < 1) q = 1;
+    qtyEl.textContent = q;
+  }
+
+  // Size dots
+  document.querySelectorAll('.size-dot').forEach(dot => {
+    dot.addEventListener('click', function() {
+      this.closest('.nail-sizes').querySelectorAll('.size-dot').forEach(d => d.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
+                                                                                                                                                                                                                                                      
